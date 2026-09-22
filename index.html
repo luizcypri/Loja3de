@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Links - LIC Empresarial</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Pequeno ajuste de gradiente de fundo opcional */
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-slate-100 flex flex-col items-center justify-center p-4">
+
+    <!-- Container Principal (Limitado em largura para formato mobile/card) -->
+    <main
+        class="w-full max-w-md mx-auto bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-3xl p-6 shadow-2xl">
+
+        <!-- Perfil / Cabeçalho -->
+        <div class="flex flex-col items-center text-center mb-8">
+            <!-- Foto de Perfil -->
+            <div
+                class="relative w-24 h-24 mb-4 rounded-full p-1 bg-gradient-to-tr from-indigo-500 to-rose-500 shadow-lg">
+                <img src="https://drive.google.com/file/d/19fZvq4-uCAYfk_hBTXueqJ_HM3mD4UPr/view" alt="Foto de Perfil"
+                    class="w-full h-full object-cover rounded-full">
+            </div>
+
+            <!-- Nome e Verificação -->
+            <h1 class="text-xl font-bold flex items-center gap-1.5 text-white">
+                Loja 3Dê
+                <i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i>
+            </h1>
+
+            <!-- Bio / Descrição -->
+            <p class="text-sm text-slate-400 mt-1 max-w-xs">
+                PROJETOS EXCLUSIVOS E PERSONALIZADOS.
+            </p>
+        </div>
+
+        <!-- Lista de Links / Botões -->
+        <div class="flex flex-col gap-3.5">
+
+            <!-- Link de E-commerce / Loja -->
+            <a href="https://loja3de.com.br" target="_blank" rel="noopener noreferrer"
+                class="group relative flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-medium shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                        <i class="fa-solid fa-store text-indigo-200"></i>
+                    </span>
+                    <span>Visite Nossa Loja Virtual</span>
+                </div>
+                <i class="fa-solid fa-arrow-right text-indigo-200 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <!-- Link do WhatsApp / Contato -->
+            <a href="https://wa.me/5519993655950" target="_blank" rel="noopener noreferrer"
+                class="group relative flex items-center justify-between p-4 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 hover:border-emerald-500/50 text-white font-medium transition-all duration-300 transform hover:-translate-y-0.5">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                    </span>
+                    <span>Fale Comigo no WhatsApp</span>
+                </div>
+                <i
+                    class="fa-solid fa-arrow-right text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- Link do Instagram -->
+            <a href="https://instagram.com/seuusuario" target="_blank" rel="noopener noreferrer"
+                class="group relative flex items-center justify-between p-4 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 hover:border-pink-500/50 text-white font-medium transition-all duration-300 transform hover:-translate-y-0.5">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center">
+                        <i class="fa-brands fa-instagram text-pink-400"></i>
+                    </span>
+                    <span>Acompanhe no Instagram</span>
+                </div>
+                <i
+                    class="fa-solid fa-arrow-right text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- Link para Site Profissional / Portfólio -->
+            <a href="https://seusite.com.br" target="_blank" rel="noopener noreferrer"
+                class="group relative flex items-center justify-between p-4 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 hover:border-sky-500/50 text-white font-medium transition-all duration-300 transform hover:-translate-y-0.5">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-sky-500/10 flex items-center justify-center">
+                        <i class="fa-solid fa-globe text-sky-400"></i>
+                    </span>
+                    <span>Nosso Site Oficial</span>
+                </div>
+                <i
+                    class="fa-solid fa-arrow-right text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+            <!-- Link para Solicitar Orçamento por E-mail -->
+            <a href="mailto:contato@loja3de.com.br?subject=Orçamento%20para%20Serviços%20de%20Tecnologia&body=Olá,%20vi%20seu%20link%20nas%20redes%20sociais%20e%20gostaria%20de%20solicitar%20mais%20informações.%0A%0ANome:%20%0AAssunto:%20"
+                class="group relative flex items-center justify-between p-4 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 hover:border-indigo-500/50 text-white font-medium transition-all duration-300">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                        <i class="fa-solid fa-envelope text-indigo-400"></i>
+                    </span>
+                    <span>Solicitar Orçamento por E-mail</span>
+                </div>
+                <i
+                    class="fa-solid fa-arrow-right text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+            </a>
+
+        </div>
+
+        <!-- Rodapé / Direitos -->
+        <footer class="mt-8 text-center text-xs text-slate-500">
+            &copy; 2026 • Todos os direitos reservados.
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
