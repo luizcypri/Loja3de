@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio de Impressão 3D</title>
+    <!-- Importando fontes e ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f1117;
+            --card-bg: #1a1d24;
+            --accent-color: #ff6600; /* Laranja estilo filamento */
+            --accent-hover: #ff8533;
+            --text-color: #f0f2f5;
+            --text-muted: #9ca3af;
+            --border-color: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(rgba(15, 17, 23, 0.8), rgba(15, 17, 23, 0.95)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        header h1 span {
+            color: var(--accent-color);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Filtros */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* Grid de Projetos */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-category {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background-color: rgba(255, 102, 0, 0.1);
+            color: var(--accent-color);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        /* Seção Sobre / Máquinas */
+        .about-section {
+            margin-top: 80px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .equipment-list {
+            list-style: none;
+        }
+
+        .equipment-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+        }
+
+        .equipment-list i {
+            color: var(--accent-color);
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            margin-top: 60px;
+        }
+
+        .social-links {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Modal de Detalhes */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            max-width: 700px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            position: relative;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Meu Portfólio <span>3D</span></h1>
+        <p>Transformando arquivos digitais em realidade física com precisão e qualidade.</p>
+        <a href="#portfolio" class="cta-btn">Ver Trabalhos</a>
+    </header>
+
+    <div class="container" id="portfolio">
+        
+        <!-- Botões de Filtro -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterSelection('all')">Todos</button>
+            <button class="filter-btn" onclick="filterSelection('mini')">Miniaturas & Geek</button>
+            <button class="filter-btn" onclick="filterSelection('tech')">Peças Técnicas</button>
+            <button class="filter-btn" onclick="filterSelection('decor')">Decoração</button>
+        </div>
+
+        <!-- Grade de Cards (Substitua as imagens e textos pelos seus trabalhos) -->
+        <div class="grid">
+            
+            <!-- Item 1 -->
+            <div class="card" onclick="openModal('Dragão Articulado', 'Impresso em PLA Marmorizado na Ender 3. Altura de camada de 0.16mm. Modelo totalmente articulado sem necessidade de suportes.', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', 'Miniaturas & Geek', ['PLA', 'Ender 3', 'Articulado'])">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Dragão Articulado" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">Miniaturas & Geek</span>
+                    <h3 class="card-title">Dragão Articulado</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Impresso com filamento PLA Marmorizado.</p>
+                    <div class="card-tags">
+                        <span class="tag">PLA</span>
+                        <span class="tag">Ender 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="card" onclick="openModal('Suporte de Fone Customizado', 'Suporte projetado em CAD e impresso em ABS para maior resistência mecânica e durabilidade.', 'https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80', 'Peças Técnicas', ['ABS', 'CAD', 'Utilitário'])">
+                <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80" alt="Suporte de Fone" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">Peças Técnicas</span>
+                    <h3 class="card-title">Suporte de Fone Customizado</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Projetado para alta durabilidade e resistência.</p>
+                    <div class="card-tags">
+                        <span class="tag">ABS</span>
+                        <span class="tag">Utilitário</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="card" onclick="openModal('Vaso Geométrico de Baixa Poligonalidade', 'Vaso decorativo impresso em vaso mode (Spiral Vase) com filamento PLA Seda Dourado.', 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80', 'Decoração', ['PLA Seda', 'Vasos', 'Design'])">
+                <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800&q=80" alt="Vaso Geométrico" class="card-img">
+                <div class="card-content">
+                    <span class="card-category">Decoração</span>
+                    <h3 class="card-title">Vaso Geométrico Moderno</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Acabamento brilhante com PLA Seda.</p>
+                    <div class="card-tags">
+                        <span class="tag">PLA Seda</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Seção Sobre / Máquinas -->
+        <div class="about-section">
+            <div class="about-text">
+                <h2>Sobre a Produção</h2>
+                <p>Trabalho com modelagem e impressão 3D focando em alto nível de detalhamento, calibração rigorosa de temperatura e escolha dos melhores materiais do mercado para garantir resistência e beleza estética.</p>
+                <ul class="equipment-list">
+                    <li><i class="fas fa-check-circle"></i> Impressoras FDM de alta precisão</li>
+                    <li><i class="fas fa-check-circle"></i> Uso de materiais de ponta (PLA, ABS, PETG, TPU)</li>
+                    <li><i class="fas fa-check-circle"></i> Pós-processamento e acabamento sob demanda</li>
+                </ul>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?auto=format&fit=crop&w=800&q=80" alt="Impressora 3D funcionando" style="width: 100%; border-radius: 8px; object-fit: cover;">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="social-links">
+            <a href="https://instagram.com/loja3de" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5519993655950" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://my.stlflix.com/s/loja3de" target="_blank"><i class="fas fa-store"></i></a>
+        </div>
+        <p>Copyright &copy; 2026 Loja 3Dê • Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Modal Detalhes do Projeto -->
+    <div class="modal" id="projectModal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="forceCloseModal()">&times;</button>
+            <img src="" alt="" class="modal-img" id="modalImg">
+            <div class="modal-body">
+                <span id="modalCategory" style="color: var(--accent-color); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;"></span>
+                <h2 id="modalTitle" style="margin: 5px 0 15px 0; font-size: 1.5rem;"></h2>
+                <p id="modalDesc" style="color: var(--text-muted); margin-bottom: 20px;"></p>
+                <div id="modalTags" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funções do Modal
+        function openModal(title, desc, imgUrl, category, tags) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalImg').src = imgUrl;
+            document.getElementById('modalCategory').innerText = category;
+            
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = '';
+            tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.innerText = tag;
+                tagsContainer.appendChild(span);
+            });
+
+            document.getElementById('projectModal').style.display = 'flex';
+        }
+
+        function forceCloseModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+
+        function closeModal(e) {
+            if (e.target.id === 'projectModal') {
+                document.getElementById('projectModal').style.display = 'none';
+            }
+        }
+
+        // Função de Filtro (Simples)
+        function filterSelection(category) {
+            // Atualizar botões ativos
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Aqui você pode expandir a lógica para esconder/mostrar cards baseados na categoria se desejar
+        }
+    </script>
+</body>
+</html>
