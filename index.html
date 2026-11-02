@@ -1,101 +1,513 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja 3Dê - Projetos Exclusivos e Personalizados</title>
+    <title>Loja de Impressão 3D</title>
 
-    <!-- Adicione a linha do favicon logo abaixo -->
-    <link rel="icon" type="image/jpeg" href="images/logo1.jpeg">
-
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="../images/logo1.jpeg">
     <style>
+        /* Reset & Variáveis */
+        :root {
+            --bg-dark: #0F1115;
+            --bg-card: #171A21;
+            --bg-card-alt: #1D212A;
+            --border-color: #262B36;
+            --border-muted: #3A4150;
+            --text-main: #F2F4F8;
+            --text-muted: #C9CFDA;
+            --text-dim: #A9B0BC;
+            --brand-primary: #FF6A1F;
+            --brand-light: #FF8A4C;
+        }
+
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             background-color: #0f172a; /* Azul escuro moderno */
             color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
             min-height: 100vh;
-            text-align: center;
-            padding: 20px;
         }
 
+        /* Links & Botões */
+        a {
+            color: var(--brand-light);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #FFB38A;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 500;
+            min-height: 44px;
+            transition: filter 0.2s;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-primary {
+            background: var(--brand-primary);
+            color: var(--bg-dark);
+            font-weight: 700;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-muted);
+            color: var(--text-main);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--brand-primary);
+        }
+
+        /* Layout Containers */
         .container {
-            max-width: 600px;
-            width: 100%;
-            background: #1e293b;
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid #334155;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Typography */
+        .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            font-size: 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            padding: 12px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 72px 0 88px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            margin: 0 0 16px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brand-light);
+            font-weight: 500;
+        }
+
+        .hero-title {
+            margin: 0 0 20px;
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-desc {
+            margin: 0 0 32px;
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 520px;
+        }
+
+        .hero-placeholder {
+            aspect-ratio: 1 / 1;
+            max-width: 460px;
+            width: 100%;
+            justify-self: center;
+            border-radius: 16px;
+            border: 1px dashed var(--border-muted);
+            background: #1e293bcc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8A93A3;
+            font-size: 14px;
+            text-align: center;
+            padding: 24px;
+        }
+
+        /* A imagem em si */
+        .hero-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid #38bdf8;
+            /* Preenche todo o espaço sem distorcer as proporções */
+            object-position: center;
+            /* Mantém o centro do objeto em destaque */
+            border-radius: inherit;
+            /* Herda o arredondamento de borda do container */
         }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #38bdf8;
+        /* Products Section */
+        .products-section {
+            padding: 24px 0 88px;
         }
 
-        p {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 30px;
+        .grid-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
         }
 
-        .btn-links {
-            display: inline-block;
-            background-color: #38bdf8;
-            color: #0f172a;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
+        .product-card {
+            overflow: hidden;
         }
 
-        .btn-links:hover {
-            background-color: #0ea5e9;
+        .product-thumb {
+            height: 200px;
+            background: repeating-linear-gradient(0deg, #1D212A 0 14px, #232833 14px 16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8A93A3;
+            font-size: 13px;
         }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #64748b;
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            margin: 0 0 6px;
+            font-size: 20px;
+        }
+
+        .product-desc {
+            margin: 0 0 14px;
+            color: var(--text-dim);
+            font-size: 15px;
+        }
+
+        .product-price {
+            margin: 0;
+            font-weight: 700;
+            color: var(--brand-light);
+        }
+
+        /* How it works Section */
+        .how-it-works {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 72px 0;
+        }
+
+        .grid-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+        }
+
+        .step-number {
+            font-size: 40px;
+            color: var(--brand-primary);
+            font-weight: 700;
+            margin: 0 0 8px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 88px 0;
+        }
+
+        .grid-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            display: block;
+            padding: 24px;
+            color: var(--text-main);
+        }
+
+        .contact-card svg {
+            stroke: var(--brand-primary);
+        }
+
+        .contact-name {
+            margin: 12px 0 4px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 28px 0;
+            text-align: center;
+            color: #8A93A3;
+            font-size: 14px;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <!-- Substitua o caminho da imagem caso use na raiz ou dentro de pastas -->
-        <img src="images/logo1.jpeg" alt="Logo Loja 3Dê" class="logo">
-        
-        <h1>Estamos de Cara Nova!</h1>
-        <p>Nosso site principal está passando por uma grande reformulação para trazer um portfólio incrível e profissional para você. Em breve novidades por aqui!</p>
-        
-        <a href="/links" class="btn-links">Acessar Redes Sociais e Links</a>
+    <!-- Header -->
+    <header class="container">
+        <!--<div class="logo font-heading">Loja <span style="color: var(--brand-primary)">.</span>3Dê</div>-->
+        <div class="logo font-heading">
+            <img src="../images/logo1.jpeg" alt="Logo da Loja 3Dê" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 8px;">
+        </div>   
+        <nav class="nav-links">
+            <a href="#produtos">Produtos</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
 
-        <div class="footer">
-            Copyright &copy; 2026 Loja 3Dê • Todos os direitos reservados.
+    <!-- Hero -->
+    <section class="container hero">
+        <div>
+            <p class="hero-tag">Impressão 3D sob medida</p>
+            <h1 class="hero-title font-heading">Ideias que ganham forma, camada por camada.</h1>
+            <p class="hero-desc">Peças, utilidades e presentes criados em impressora 3D. Escolha um produto pronto ou
+                peça o seu personalizado.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px">
+                <a class="btn btn-primary" href="https://wa.me/5519993655950">Pedir pelo WhatsApp</a>
+                <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
+            </div>
         </div>
-    </div>
+        <div class="hero-placeholder">
+            <img src="../images/anjo1.jpeg" alt="Foto de destaque da loja" class="hero-img">
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos" class="container products-section">
+        <h2 class="font-heading" style="font-size: 36px; margin: 0 0 8px;">Produtos prontos</h2>
+        <p style="margin: 0 0 40px; color: var(--text-dim)">Trocamos cor e acabamento sob consulta. Chame no WhatsApp
+            para confirmar disponibilidade.</p>
+
+        <div class="grid-products">
+            <!-- Exemplo de Item repetível (Produto 1 ao 6) -->
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/Democracia.jpeg" alt="Democracia" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Democracia</h3>
+                    <p class="product-desc">Uma Vitória que Reescreveu a História. Um Marco para o Brasil e para o Mundo.</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Tamanho: 20cm x 20cm e 15cm x 15cm</p>
+                </div>
+            </article>
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/gato.png" alt="Anjo" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Quebra Cabeça de Gatos</h3>
+                    <p class="product-desc">Quebra cabeça de gatos na caixa, jogo de Lógica e estratégia encaixe criativo.</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Tamanho: 10cm x 10cm</p>
+                </div>
+            </article>
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/panda.png" alt="Panda Tumble" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Panda Tumble</h3>
+                    <p class="product-desc">Um divertido jogo de equilíbrio de mesa, no qual os jogadores se revezam colocando pandas em uma árvore bonsai.</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Tamanho: 21cm x 20cm></p>
+                </div>
+            </article>
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/Village_Lights.png" alt="Village Lights" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Luzes da Vila</h3>
+                    <p class="product-desc">Um conjunto de casinhas em miniatura projetadas para brilhar por dentro.</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Altura Aproximada: 14 cm</p>
+                </div>
+            </article>
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/Santa_s_Bonfire.png" alt="Santa's Bonfire" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Fogueira do Papai Noel</h3>
+                    <p class="product-desc">Até o Papai Noel precisa se aquecer!</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Altura Aproximada: 11 cm</p>
+                </div>
+            </article>
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/Starfield.png" alt="Starfield" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Jogo da Velha Estelar</h3>
+                    <p class="product-desc">O clássico jogo da velha com visual de céu noturno.</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Altura Aproximada: 10 x 10 x 1,5 cm</p>
+                </div>
+            </article>
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/Heavenly_Trio.png" alt="Heavenly Trio" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Trio Celestial</h3>
+                    <p class="product-desc">Um conjunto de três peças inspiradas no céu noturno.</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Altura Aproximada: 20 cm</p>
+                </div>
+            </article>
+            <article class="card product-card">
+                <div class="product-thumb">
+                    <img src="../images/DK.jpeg" alt="DK" class="hero-img">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title font-heading">Donkey Kong</h3>
+                    <p class="product-desc">Uma réplica em 3D do icônico personagem do jogo clássico.</p>
+                    <p class="product-desc">Material: PLA</p>
+                    <p class="product-price">Altura Aproximada: 20 cm</p>
+                </div>
+            </article>
+            <!-- Repita o card acima para os demais produtos -->
+        </div>
+    </section>
+
+    <!-- Como Funciona -->
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <h2 class="font-heading" style="font-size: 36px; margin: 0 0 40px;">Como funciona</h2>
+            <div class="grid-steps">
+                <div>
+                    <p class="step-number font-heading">01</p>
+                    <h3 style="margin: 0 0 6px; font-size: 18px">Escolha ou descreva</h3>
+                    <p style="margin: 0; color: var(--text-dim); font-size: 15px">Selecione um produto pronto ou conte a
+                        sua ideia.</p>
+                </div>
+                <div>
+                    <p class="step-number font-heading">02</p>
+                    <h3 style="margin: 0 0 6px; font-size: 18px">Combine os detalhes</h3>
+                    <p style="margin: 0; color: var(--text-dim); font-size: 15px">Cor, tamanho, prazo e valor definidos
+                        pelo WhatsApp.</p>
+                </div>
+                <div>
+                    <p class="step-number font-heading">03</p>
+                    <h3 style="margin: 0 0 6px; font-size: 18px">Receba sua peça</h3>
+                    <p style="margin: 0; color: var(--text-dim); font-size: 15px">Impressão, acabamento e entrega ou
+                        retirada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="container contact-section">
+        <h2 class="font-heading" style="font-size: 36px; margin: 0 0 8px;">Fale com a gente</h2>
+        <p style="margin: 0 0 40px; color: var(--text-dim)">Escolha o canal que for mais fácil para você.</p>
+
+        <div class="grid-contact">
+            <a class="card contact-card" href="https://wa.me/5519993655950">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"></path>
+                </svg>
+                <p class="contact-name">WhatsApp</p>
+                <p style="margin: 0; color: var(--text-dim); font-size: 15px">(19) 99365-5950</p>
+            </a>
+
+            <a class="card contact-card" href="mailto:contato@loja3de.com">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="M3 7l9 6 9-6"></path>
+                </svg>
+                <p class="contact-name">E-mail</p>
+                <p style="margin: 0; color: var(--text-dim); font-size: 15px">contato@loja3de.com</p>
+            </a>
+
+            <a class="card contact-card" href="https://instagram.com/loja3de">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <circle cx="17.5" cy="6.5" r="0.8"></circle>
+                </svg>
+                <p class="contact-name">Instagram</p>
+                <p style="margin: 0; color: var(--text-dim); font-size: 15px">@loja3de</p>
+            </a>
+
+            <!--
+            <a class="card contact-card" href="https://facebook.com/[SUA-PAGINA]">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"></path>
+                </svg>
+                <p class="contact-name">Facebook</p>
+                <p style="margin: 0; color: var(--text-dim); font-size: 15px">[/sua-pagina]</p>
+            </a>
+            -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            Loja 3Dê · Impressão 3D · [AMERICANA/SP]
+        </div>
+    </footer>
 
 </body>
+
 </html>
